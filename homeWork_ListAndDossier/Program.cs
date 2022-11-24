@@ -81,12 +81,26 @@ namespace homeWork_ListAndDossier
 
         static void DeleteDossier(List<string> fullNames, List<string> positions) 
         {
-            Console.WriteLine("Введите номер досье которое хотите удалить: ");
-            int numberDossier = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите номер досье которое хотите удалить: ");
+            int numberDossier = ReadNumber();
 
             Console.WriteLine($"{fullNames[numberDossier - 1]} - был удален.");
             fullNames.RemoveAt(numberDossier - 1);
             positions.RemoveAt(numberDossier - 1);
+        }
+
+        static int ReadNumber()
+        {
+            int result;
+            string numberForConvert = Console.ReadLine();
+
+            while (int.TryParse(numberForConvert, out result) == false)
+            {
+                Console.Write("Число введино неверно, повторите ввод: ");
+                numberForConvert = Console.ReadLine();
+            }
+
+            return result;
         }
 
 
